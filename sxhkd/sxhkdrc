@@ -1,12 +1,20 @@
 #
+#
 # wm independent hotkeys
 #
+
+# apps
+super + x; {f,d}
+	{firefox-bin, discord-canary}
 
 # volume control
 XF86Audio{Lower,Raise}Volume
 	pamixer --allow-boost {-d,-i} 5
 XF86AudioMute
         pamixer -t
+# bluetooth
+super + {_, shift +} b
+	bluetoothctl {connect 28:52:E0:11:81:AF, disconnect}
 
 # clipboard history
 super + v
@@ -15,8 +23,8 @@ super + v
 super + shift + s
 	maim -s -u | xclip -selection clipboard -t image/png -i
 # terminal emulator
-super + Return
-	kitty
+super + {_, shift +} Return
+	{st, tdrop -w 1911 -a -m st}
 
 # program launcher
 super + d

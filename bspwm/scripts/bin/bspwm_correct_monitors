@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+MONITOR=$(xrandr --listmonitors | awk '/HDMI/ {print $4}')
+
+echo "correcting monitors to: ${MONITOR}"
+
+
+POLYBAR_CONF="/home/jodi/.config/polybar/config.ini"
+BSPWM_CONF="/home/jodi/.config/bspwm/bspwmrc"
+
+
+for FILE in "${POLYBAR_CONF} ${BSPWM_CONF}"; do \
+	sed -i "s/HDMI-A-./${MONITOR}/" $FILE; done
