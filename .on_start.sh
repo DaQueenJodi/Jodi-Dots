@@ -1,3 +1,7 @@
+# start sxhkd using dash as the shell to greatly speed up hotkey delay
+killall sxhkd
+SXHKD_SHELL=/bin/dash sxhkd & 
+
 # auto correct monitors because yeah
 bspwm_correct_monitors
 # launch pipewire since no systemd
@@ -7,7 +11,7 @@ killall pipewire
 xsetroot -cursor_name left_ptr
 # start compositor
 killall picom
-picom &
+picom --experimental-backend &
 # set wallpaper
 nitrogen --restore &
 # launch polybar

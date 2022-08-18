@@ -3,6 +3,10 @@
 # wm independent hotkeys
 #
 
+# vpn
+super + {_, shift + } a
+	sudo {openvpn --config ~/Ipvanish/ipvanish-US-Chicago-chi-a01.ovpn  --auth-user-pass ~/Ipvanish/pass.txt, killall openvpn}
+
 # apps
 super + x; {f,d}
 	{firefox-bin, discord-canary}
@@ -20,11 +24,11 @@ super + {_, shift +} b
 super + v
 	xfce4-popup-clipman
 # screenshot
-super + shift + s
-	maim -s -u | xclip -selection clipboard -t image/png -i
+super + {shift,ctrl} + s
+	{screenshot, sleep 2; screenshot}
 # terminal emulator
 super + {_, shift +} Return
-	{st, tdrop -w 1911 -a -m st}
+	WINIT_X11_SCALE_FACTOR=1 {alacritty -e fish, tdrop -w 1911 -a -m alacritty -e fish}
 
 # program launcher
 super + d
@@ -102,7 +106,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
 #
 # preselect
