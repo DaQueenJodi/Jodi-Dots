@@ -1,0 +1,13 @@
+# compiled lua
+luac.out
+
+# nvim packer thing
+plugin/packer_compiled.lua
+
+# object files
+*.o
+*.os
+*.ko
+*.obj
+*.elf
+
