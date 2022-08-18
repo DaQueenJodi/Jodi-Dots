@@ -1,8 +1,4 @@
-local opts = { noremap = true, silent = true }
-
-
-local term_opts = { silent = true }
-
+local opts = { noremap = true, silent = true}
 local keymap = vim.api.nvim_set_keymap
 
 keymap("", "<Space>", "<Nop>", opts)
@@ -40,4 +36,6 @@ keymap("v", "<S-Tab>", "<gv", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts) -- move text up
 keymap("v", "<A-k>", ":m .-1<CR>==", opts) -- move text down
 keymap("v", "p", '"_dP', opts) -- hack to make pasting in visual mode normal
+
+
 
