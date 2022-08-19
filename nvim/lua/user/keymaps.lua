@@ -23,8 +23,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- open file tree
 keymap("n", "<leader>e", ":NERDTreeToggle<CR>", opts)
 -- resizing windows
-keymap("n", "<C-Up>", ":resize +2<CR>", opts)
-keymap("n", "<C-Down>", ":resize -2<CR>", opts)
+keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
