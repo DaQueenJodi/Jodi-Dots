@@ -28,3 +28,7 @@ vim.opt.shortmess:append "mnrw" 			            -- shorten file status messages
 vim.opt.whichwrap:append "<,>,[,],h,l" 			   -- enable wrap around for some movement keys
 vim.opt.iskeyword:append "-" 				            -- dont treat '-' as a word seperator
 
+
+
+
+

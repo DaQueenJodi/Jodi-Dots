@@ -6,15 +6,17 @@ return packer.startup(function(use)
       -- Plugins go here!
       
 
-      -- lsp
+      -- lsp/completion/linting
       use {'neoclide/coc.nvim', run = 'yarn install --frozen-lockfile'}    -- bloat
-      --use {'ms-jpq/coq_nvim', branch = 'coq'}
       use 'rafcamlet/coc-nvim-lua'
+      use 'brenoprata10/nvim-highlight-colors'
 
       -- misc
       use 'kyazdani42/nvim-tree.lua'  -- file manager
       use 'kyazdani42/nvim-web-devicons' -- icons for nvim-tree
       use 'akinsho/toggleterm.nvim'
+      use 'gentoo/gentoo-syntax'
+
 
       use 'windwp/nvim-autopairs' -- automatic bracket/paranthesis/etc pairing 
       -- themeing
