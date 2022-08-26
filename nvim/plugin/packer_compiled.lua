@@ -89,15 +89,15 @@ _G.packer_plugins = {
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
-  ["nvim-highlight-colors"] = {
-    loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-highlight-colors",
-    url = "https://github.com/brenoprata10/nvim-highlight-colors"
-  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -113,6 +113,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/palenight.vim",
     url = "https://github.com/drewtempelmeyer/palenight.vim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,

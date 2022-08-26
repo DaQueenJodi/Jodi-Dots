@@ -38,4 +38,4 @@ keymap("v", "<A-k>", ":m .-1<CR>==", opts) -- move text down
 keymap("v", "p", '"_dP', opts) -- hack to make pasting in visual mode normal
 
 
-
+keymap("n", "<leader>t", "gt", opts) -- switch tags better

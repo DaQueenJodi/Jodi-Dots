@@ -2,7 +2,7 @@
 
 # AUTOSTART
 waybar &
-
+gentoo-pipewire-launcher &
 
 
 # This is the example configuration file for river.
@@ -17,13 +17,21 @@ waybar &
 
 
 MENU="wofi --show drun --allow-images"
-
+BLUETOOTH="bluetoothctl connect 28:52:E0:11:81:AF"
+SCREENSHOT_AREA="grimshot copy area"
+SCREENSHOT_WINDOW="grim - | wl-copy"
 # my KEYBINDINGS
 riverctl map normal Super Return spawn foot
 riverctl map normal Super D spawn "${MENU}"
-
+riverctl map normal Super B spawn "${BLUETOOTH}"
+riverctl map normal Super+Shift B spawn "bluetoothctl disconnect"
+riverctl map normal Super+Shift S spawn "${SCREENSHOT_AREA}"
+riverctl map normal Super+Shift P spawn "${SCREENSHOT_WINDOW}"
 # Super+Q to close the focused view
 riverctl map normal Super Q close
+
+# focus windows by moving mouse instead of clicking
+riverctl focus-follows-cursor normal 
 
 # Super+Shift+E to exit river
 riverctl map normal Super+Shift E exit
@@ -129,12 +137,9 @@ riverctl map passthrough Super F11 enter-mode normal
 # not have a modifier
 for mode in normal locked
 do
-    # Eject the optical drive (well if you still have one that is)
-    riverctl map $mode None XF86Eject spawn 'eject -T'
-
     # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
-    riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i --allow-boost 5'
-    riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d  --allow-boost 5'
+    riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer --allow-boost -i 5' 
+    riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer --allow-boost -d 5'
     riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute'
 
     # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
@@ -142,10 +147,6 @@ do
     riverctl map $mode None XF86AudioPlay  spawn 'playerctl play-pause'
     riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
     riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
-
-    # Control screen backlight brightness with light (https://github.com/haikarainen/light)
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 5'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
 done
 
 # Set background and border color
@@ -161,9 +162,7 @@ riverctl float-filter-add app-id float
 riverctl float-filter-add title "popup title with spaces"
 
 # Set app-ids and titles of views which should use client side decorations
-riverctl csd-filter-add app-id "gedit"
-
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 0 -outer-padding 0
+rivertile -view-padding 0 -outer-padding 0 

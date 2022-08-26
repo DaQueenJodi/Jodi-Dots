@@ -11,8 +11,12 @@ nvimtree.setup({
       adaptive_size = true,
       mappings = {
          list = {
-            { key = "u", action = "dir_up" },
-            { key = "<CR>", action = "tabnew" },
+            { key = "h",      action = "dir_up"      },
+            { key = "l",      action = "dir_down"    },
+            { key = "v",      action = "vsplit"      },
+            { key = "s",      action = "split"       },
+            { key = "t",      action = "tabnew"      },
+            { key = "<CR>",   action = "tabnew"      }
          },
       },
    },

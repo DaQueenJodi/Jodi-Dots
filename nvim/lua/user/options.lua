@@ -30,5 +30,3 @@ vim.opt.iskeyword:append "-" 				            -- dont treat '-' as a word seperat
 
 
 
-
-

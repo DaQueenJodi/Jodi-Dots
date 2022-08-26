@@ -1,6 +1,6 @@
 local keymap = vim.api.nvim_set_keymap
 local expr_opts = { noremap = true, silent = true, expr = true}
-
+local opts = { noremap = true, silent = true }
 keymap(
     "i",
     "<CR>",
@@ -56,3 +56,14 @@ keymap(
    "<Plug>(coc-rename)",
    {}
 )
+
+
+keymap(
+   "n",
+   "<leader><leader>",
+   ":call CocActionAsync('doHover')<CR>",
+   opts
+)
+
+
+
