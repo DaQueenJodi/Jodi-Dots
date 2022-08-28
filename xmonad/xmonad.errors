@@ -1,1 +1,39 @@
-$ ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -v0 -outputdir /home/jodi/.xmonad/build-x86_64-linux -o /home/jodi/.xmonad/xmonad-x86_64-linux
+$ /nix/store/8zvpwqk5ksm45mc588hkln2x2hxxvbdd-ghc-9.0.2-with-packages/bin/ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -v0 -outputdir /home/jodi/.xmonad/build-x86_64-linux -o /home/jodi/.xmonad/xmonad-x86_64-linux
+
+xmonad.hs:73:56: error:
+    • Variable not in scope:
+        toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
+    • Perhaps you meant one of these:
+        data constructor ‘ToggleStruts’ (imported from XMonad.Hooks.ManageDocks),
+        ‘defToggleStrutsKey’ (imported from XMonad.Hooks.StatusBar)
+   |
+73 |    withEasySB (statusBarProp "xmobar" (pure xmobarPP)) toggleStrutsKey config
+   |                                                        ^^^^^^^^^^^^^^^
+
+xmonad.hs:76:27: error:
+    • Variable not in scope: magent :: String -> String
+    • Perhaps you meant ‘magenta’ (line 94)
+   |
+76 |  { ppSep                = magent " • "
+   |                           ^^^^^^
+
+xmonad.hs:80:27: error:
+    • Variable not in scope: lowwhite :: String -> String
+    • Perhaps you meant ‘lowWhite’ (line 99)
+   |
+80 |  , ppHiddenNoWindows    = lowwhite . wrap " " ""
+   |                           ^^^^^^^^
+
+xmonad.hs:87:27: error:
+    • Variable not in scope: lowwhite :: String -> String
+    • Perhaps you meant ‘lowWhite’ (line 99)
+   |
+87 |   formatUnfocused = wrap (lowwhite "[") (lowwhite "]") . blue   . ppWindow
+   |                           ^^^^^^^^
+
+xmonad.hs:87:42: error:
+    • Variable not in scope: lowwhite :: String -> String
+    • Perhaps you meant ‘lowWhite’ (line 99)
+   |
+87 |   formatUnfocused = wrap (lowwhite "[") (lowwhite "]") . blue   . ppWindow
+   |                                          ^^^^^^^^

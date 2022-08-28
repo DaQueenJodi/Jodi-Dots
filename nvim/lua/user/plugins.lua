@@ -7,18 +7,16 @@ return packer.startup(function(use)
       
 
       -- lsp/completion/linting
-      use {'neoclide/coc.nvim', run = 'yarn install --frozen-lockfile'}    -- bloat
+      use {'neoclide/coc.nvim', branch = 'release'} -- bloat
       use 'rafcamlet/coc-nvim-lua'
-      use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-      
+      use {'nvim-treesitter/nvim-treesitter'  , run = ':TSUpdate'}
+      use 'LnL7/vim-nix'      
       -- files
       use 'nvim-telescope/telescope.nvim'
 
-      use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+      use 'nvim-telescope/telescope-fzf-native.nvim'
       use 'kyazdani42/nvim-tree.lua'  -- file manager
       use 'kyazdani42/nvim-web-devicons' -- icons for nvim-tree
-
-
 
       -- misc
       use 'akinsho/toggleterm.nvim'
@@ -27,8 +25,6 @@ return packer.startup(function(use)
       use 'windwp/nvim-autopairs' -- automatic bracket/paranthesis/etc pairing 
       -- themeing
       use 'drewtempelmeyer/palenight.vim'
-
-      
 
       -- deps
       use 'nvim-lua/plenary.nvim'

@@ -1,0 +1,2 @@
+shell:
+  program: /run/current-system/sw/bin/fish
