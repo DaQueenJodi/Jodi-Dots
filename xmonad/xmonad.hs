@@ -12,6 +12,9 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
+import DBus
+import DBus.Client
+import qualified Codec.Binary.UTF8.String as UTF8
 
 -- ACTIONS
 import XMonad.Actions.MouseResize
@@ -30,7 +33,9 @@ import XMonad.Layout.WindowNavigation
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 
+-- MISC
 import XMonad.Hooks.ManageHelpers -- gives the 'isDialog' function
+import System.Exit
 
 
 -- PROMPTS
@@ -44,26 +49,31 @@ import Colors.DoomOne
 
 
 main :: IO()
-main = xmonad
-     . ewmhFullscreen
-     . ewmh 
-     . withEasySB (statusBarProp "xmobar -x 0 ~/.config/xmobar/config" (pure myXmobarPP)) myToggleStrutsKey 
-     . withEasySB (statusBarProp "xmobar -x 1 ~/.config/xmobar/config" (pure myXmobarPP)) myToggleStrutsKey 
-     $ myConfig 
+main = do 
+      dbus <- DBus.connectSession
+      DBus.RequestName dbus (D.busName_ "org.xmonad.Log")
+         [DBus.nameAllowReplacement, DBus.nameREplaceExisting, DBus.nameDoNotQueue]
+      xmonad $ ewmhFullscreen $ewmh $ myConfig 
       
 myConfig = def
       {modMask      = mod4Mask -- use super key as modifier key
       , layoutHook  = myLayout
+      , logHook     = myLogHook
       , manageHook  = myManageHook
       , startupHook = myStartupHook 
       , terminal    = myTerminal
       }
       `additionalKeysP`
-      [ ("M-S-s", unGrab *> spawn "screenshot --region")
-      , ("M-<Print>", unGrab *> spawn "screenshot --window")  
+      [ ("M-S-s", unGrab *> spawn (myScriptPath ++ "screenshot -s"))
+      , ("M-<Print>", unGrab *> spawn (myScriptPath ++ "screenshot -f"))
       , ("M-<Return>", spawn myTerminal)
       , ("M-d", spawn "rofi -show drun -show-icons")
       , ("M-b", spawn "bluetoothctl connect 28:52:E0:11:81:AF")
+      , ("M-S-b", spawn "bluetoothctl disconnect")
+      , ("M-q", kill ) -- close
+      , ("M-S-q", kill1) -- force kill
+      , ("M-r", spawn "xmonad --recompile; xmonad --restart") -- seemlessly restart xmonad
+      , ("M-S-e", io (exitWith ExitSuccess)) -- exit xmonad 
       , ("<XF86AudioLowerVolume>", spawn "pamixer --decrease 5")
       , ("<XF86AudioRaiseVolume>", spawn "pamixer --allow-boost --increase 5")
       , ("<XF86AudioMute>", spawn "pamixer --toggle-mute")
@@ -73,6 +83,29 @@ myConfig = def
       , ("M-p")                  -- old dmenu config
       , ("M-S-c")                -- old close config
       ]
+
+-- POLYBAR
+myLogHook :: DBus.Client -> PP
+myLogHook dbus = def
+   { ppOutput = dbusOutput dbus
+   , ppCurrent = wrap ("%{F" ++ color01 ++ "} ") " %{F-}"
+   , ppVisible = wrap ("%{F" ++ color02 ++ "} ") " %{F-}"
+   , ppUrgent = wrap ("%{F" ++ color03 ++ "} ") " %{F-}"
+   , ppHidden = wrap ("%{F" ++ color04 ++ "} ") " %{F-}"
+   , ppTitle = wrap ("%{F" ++ color05 ++ "} ") " %{F-}"
+   }
+-- Emit DBus signal on log updates
+dbusOutput :: DBus.Client -> String -> IO ()
+dbusOutput dbus str = do
+      let signal = (DBus.signal objectPath interfaceName memberName) {
+            DBus.signalBody = [DBus.toVariant $ UTF8.decodeString str]
+         }
+      Dbus.emit dbus signal 
+   where 
+      objectPath = DBus.objectPath_ "/org/xmonad.Log"
+      interfaceName = DBus.interfaceName_ "org.xmonad.Log"
+      memberName = DBus.memberName_ "Update"
+
 -- STARTUP
 myStartupHook = do
    spawn "kilall trayer"
@@ -151,7 +184,7 @@ myEmojiFont :: String
 myEmojiFont = "xft:JoyPixels:regular:size=9:antialias=true:hinting=true"
 
 myTerminal :: String
-myTerminal = "kitty "
+myTerminal = "alacritty "
 
 myBrowser :: String
 myBrowser = "firefox "
@@ -165,7 +198,8 @@ myBorderWidth = 1
 myNormColor :: String
 myNormColor = "#282c34"
 
-
+myScriptPath :: String 
+myScriptPath = "/home/jodi/Scripts/utils/"
 
 
 myToggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)

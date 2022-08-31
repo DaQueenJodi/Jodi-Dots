@@ -1,2 +1,7 @@
 shell:
   program: /run/current-system/sw/bin/fish
+
+
+window:
+  dynamic_title: true
+  opacity: 0.7

@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 bar="▁▂▃▄▅▆▇█"
 dict="s/;//g;"
