@@ -1,9 +1,0 @@
-  { pkgs,
-    ...
-  }: {
-
-  imports = [
-    ./hardware
-    ./wm
-  ];
-}
