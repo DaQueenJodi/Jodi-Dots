@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -69,25 +74,73 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["coc-nvim-lua"] = {
+  LuaSnip = {
     loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/coc-nvim-lua",
-    url = "https://github.com/rafcamlet/coc-nvim-lua"
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["coc.nvim"] = {
+  catppuccin = {
     loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/coc.nvim",
-    url = "https://github.com/neoclide/coc.nvim"
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
   },
-  ["gentoo-syntax"] = {
+  ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/gentoo-syntax",
-    url = "https://github.com/gentoo/gentoo-syntax"
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com//hrsh7th/cmp-nvim-lua"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  neoformat = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/neoformat",
+    url = "https://github.com/sbdchd/neoformat"
   },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-code-action-menu"] = {
+    commands = { "CodeActionMenu" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/opt/nvim-code-action-menu",
+    url = "https://github.com/weilbith/nvim-code-action-menu"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/NvChad/nvim-colorizer.lua"
+  },
+  ["nvim-lint"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-lint",
+    url = "https://github.com/mfussenegger/nvim-lint"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -104,6 +157,11 @@ _G.packer_plugins = {
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["omnisharp-vim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/omnisharp-vim",
+    url = "https://github.com/OmniSharp/omnisharp-vim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -118,6 +176,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  slimv = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/slimv",
+    url = "https://github.com/kovisoft/slimv"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -138,10 +201,33 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-nix",
     url = "https://github.com/LnL7/vim-nix"
+  },
+  ["vim-parinfer"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-parinfer",
+    url = "https://github.com/bhurlow/vim-parinfer"
+  },
+  ["yuck.vim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/yuck.vim",
+    url = "https://github.com/elkowar/yuck.vim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file CodeActionMenu lua require("packer.load")({'nvim-code-action-menu'}, { cmd = "CodeActionMenu", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)

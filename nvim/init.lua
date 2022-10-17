@@ -1,4 +1,6 @@
 require "user.options"
+require "user.lsp"
+require "user.completion"
 require "user.keymaps"
 require "user.plugins"
 require "user.theme"

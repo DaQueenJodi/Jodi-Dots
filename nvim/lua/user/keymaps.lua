@@ -18,7 +18,10 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-
+-- switch tags better
+keymap("n", "<leader>t", "gt", opts) 
+-- close search
+keymap("n", "Esc", ":noh<CR>", opts)
 
 -- open file tree
 keymap("n", "<leader>e", ":NERDTreeToggle<CR>", opts)
@@ -37,5 +40,5 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts) -- move text up
 keymap("v", "<A-k>", ":m .-1<CR>==", opts) -- move text down
 keymap("v", "p", '"_dP', opts) -- hack to make pasting in visual mode normal
 
-
-keymap("n", "<leader>t", "gt", opts) -- switch tags better
+-- requires neoformat plugin
+keymap("n", "<leader>f", ":Neoformat<CR>", opts)

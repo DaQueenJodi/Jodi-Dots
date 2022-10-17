@@ -10,7 +10,7 @@ vim.opt.ignorecase = true     				         -- ignore case
 vim.opt.writebackup = false
 vim.opt.updatetime = 300                           -- way faster update time
 vim.opt.undofile = true                            -- persistent undos
---vim.opt.termguicolors = true                       -- use way more colors, looks like shit on some themes
+vim.opt.termguicolors = true                       -- use way more colors, looks like shit on some themes
 vim.opt.cursorline = true                          -- line with cursor is hilighted
 --vim.opt.mouse = "a" 					               -- mouse support
 vim.opt.smartindent = true
@@ -28,5 +28,4 @@ vim.opt.shortmess:append "mnrw" 			            -- shorten file status messages
 vim.opt.whichwrap:append "<,>,[,],h,l" 			   -- enable wrap around for some movement keys
 vim.opt.iskeyword:append "-" 				            -- dont treat '-' as a word seperator
 
-
-
+vim.wo.wrap = false;                               -- disable line wrapping
