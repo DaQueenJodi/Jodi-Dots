@@ -69,8 +69,8 @@ static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 static const char *tdropcmd[] = { "tdrop", "-w", "1911", "-a", "-m" TERMINAL, NULL };
-static const char *scrnshot[] = { "screenshot", "-s", NULL };
-static const char *fscrnshot[] = { "screenshot", "-f", NULL};
+static const char *scrnshot[] = { "screenshot", "select", NULL };
+static const char *fscrnshot[] = { "screenshot", "fullscreen", NULL};
 static const char *btconcmd[] = { "bluetoothctl", "connect", "28:52:E0:11:81:AF", NULL };
 static const char *btdisccmd[] = { "bluetoothctl", "disconnect", NULL};
 
@@ -98,7 +98,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,  		         zoom,           {0} },
 	{ MODKEY,                       XK_q,      		         killclient,     {0} },
 	{ MODKEY,                       XK_t,      		         setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_s,      		         setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,      		         setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,     		         setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_Tab,    		         setlayout,      {0} },
 	{ MODKEY,                       XK_s,      		         togglefloating, {0} },

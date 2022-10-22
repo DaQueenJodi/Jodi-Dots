@@ -28,10 +28,7 @@ cmp.setup({
     sources = cmp.config.sources({
         {name = 'nvim_lsp', keyword_length = 1},
         {name = 'luasnip', keyword_length = 2}
-    }, {
-        {name = "path", keyword_length = 0},
-        {name = 'buffer', keyword_length = 3},
-        {name = "nvim_lua", keyword_length = 0}
+    }, { {name = "path", keyword_length = 0}, {name = 'buffer', keyword_length = 3}, {name = "nvim_lua", keyword_length = 0}
     })
 })
 
@@ -57,3 +54,4 @@ require('lspconfig')['csharp_ls'].setup {capabilities = capabilities}
 require('lspconfig')['jsonls'].setup {capabilities = capabilities}
 require('lspconfig')['rust_analyzer'].setup {capabilities = capabilities}
 require('lspconfig')['sumneko_lua'].setup {capabilities = capabilities}
+require('lspconfig')['nil_ls'].setup {capabilities = capabilities}

@@ -97,12 +97,22 @@ _G.packer_plugins = {
   ["cmp-nvim-lua"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com//hrsh7th/cmp-nvim-lua"
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   cmp_luasnip = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["hop.nvim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
   },
   neoformat = {
     loaded = true,
@@ -157,11 +167,6 @@ _G.packer_plugins = {
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["omnisharp-vim"] = {
-    loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/omnisharp-vim",
-    url = "https://github.com/OmniSharp/omnisharp-vim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -197,6 +202,11 @@ _G.packer_plugins = {
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
   ["vim-nix"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-nix",
@@ -206,11 +216,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-parinfer",
     url = "https://github.com/bhurlow/vim-parinfer"
-  },
-  ["yuck.vim"] = {
-    loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/yuck.vim",
-    url = "https://github.com/elkowar/yuck.vim"
   }
 }
 

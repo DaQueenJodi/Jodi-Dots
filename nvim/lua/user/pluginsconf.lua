@@ -4,5 +4,6 @@ require "user.nvim-tree"
 require "user.treesitter"
 require "user.toggleterm"
 require "user.colorizer"
+require "user.hop"
 --require "user.null-ls"
 

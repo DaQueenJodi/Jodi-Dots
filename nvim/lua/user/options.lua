@@ -12,7 +12,7 @@ vim.opt.updatetime = 300                           -- way faster update time
 vim.opt.undofile = true                            -- persistent undos
 vim.opt.termguicolors = true                       -- use way more colors, looks like shit on some themes
 vim.opt.cursorline = true                          -- line with cursor is hilighted
---vim.opt.mouse = "a" 					               -- mouse support
+vim.opt.mouse = ""    					               -- disable mouse support ("a" = enable)
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.number = true 	               				-- line numbers
