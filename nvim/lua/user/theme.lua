@@ -9,5 +9,8 @@ vim.cmd 'colorscheme catppuccin'
 
 -- vim.cmd "colorscheme palenight"
 
-require('monokai').setup({ pallete = require('monokai').pro, italics = false });
+--require('monokai').setup({ pallete = require('monokai').pro, italics = false });
+
+
+vim.cmd 'colorscheme tokyonight'
 

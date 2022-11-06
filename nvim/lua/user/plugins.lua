@@ -38,14 +38,13 @@ return packer.startup(function(use)
 
     -- misc
     use 'akinsho/toggleterm.nvim'
-
-    use 'phaazon/hop.nvim'
-
+    use 'numToStr/Comment.nvim'
     use 'windwp/nvim-autopairs' -- automatic bracket/paranthesis/etc pairing
     -- themeing
     use 'drewtempelmeyer/palenight.vim'
     use {'catppuccin/nvim', as = 'catppuccin'}
     use 'tanvirtin/monokai.nvim'
+    use 'folke/tokyonight.nvim'
 
     -- deps
     use 'nvim-lua/plenary.nvim'
