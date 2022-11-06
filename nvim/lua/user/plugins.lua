@@ -6,11 +6,16 @@ return packer.startup(function(use)
     use 'neovim/nvim-lspconfig'
     use {'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'}
     -- completion
+    -- CMP
     use 'hrsh7th/cmp-nvim-lua'
     use 'saadparwaiz1/cmp_luasnip'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
+    --COQ
+    use {'ms-jpq/coq_nvim', branch = 'coq'}
+    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
+    use {'ms-jpq/coq.thirdparty', branch = '3p'}
     -- snippets
     use 'rafamadriz/friendly-snippets'
     use 'L3MON4D3/LuaSnip'
@@ -40,9 +45,15 @@ return packer.startup(function(use)
     -- themeing
     use 'drewtempelmeyer/palenight.vim'
     use {'catppuccin/nvim', as = 'catppuccin'}
+    use 'tanvirtin/monokai.nvim'
 
     -- deps
     use 'nvim-lua/plenary.nvim'
+      
+    use {
+       'williamboman/mason.nvim',
+       'williamboman/mason-lspconfig.nvim'
+    }
 
     use 'wbthomason/packer.nvim' -- get autoupdates for packer
 end)
