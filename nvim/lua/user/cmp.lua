@@ -16,14 +16,6 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({select = true}),
-        ['C-<space>'] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(1) then
-                luasnip.jump(1)
-            else
-                fallback()
-            end
-        end, {'i', 's'})
-
     }),
     sources = cmp.config.sources({
         {name = 'nvim_lsp', keyword_length = 1},

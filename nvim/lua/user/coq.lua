@@ -14,7 +14,7 @@ require "coq_3p" {
 
 vim.g.coq_settings = {
    keymap = {
-      recommended = false,
+      recommended = true,
       pre_select = true,
       jump_to_mark = "<C-Tab>"
    },
@@ -31,10 +31,9 @@ vim.g.coq_settings = {
    limits = { completion_auto_timeout = 0.5 },
    clients = {
      lsp = { enabled = true},
-     treesitter = { enabled = true},
+     tree_sitter = { enabled = true},
      snippets = {enabled = false},
    }
 }
-
-
-keymap("i", "<C-Space>", [[ pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>" ]], opts)
+-- since autostart doesnt work
+vim.cmd('COQnow -s')

@@ -21,7 +21,7 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- switch tags better
 keymap("n", "<leader>t", "gt", opts) 
 -- close search
-keymap("n", "Esc", ":noh<CR>", opts)
+keymap("n", "<Esc>", ":noh<CR>", opts)
 
 -- open file tree
 keymap("n", "<leader>e", ":NERDTreeToggle<CR>", opts)

@@ -11,6 +11,7 @@ return packer.startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'hrsh7th/cmp-buffer'
     --COQ
     use {'ms-jpq/coq_nvim', branch = 'coq'}
@@ -34,17 +35,22 @@ return packer.startup(function(use)
 
     use 'nvim-telescope/telescope-fzf-native.nvim'
     use 'kyazdani42/nvim-tree.lua' -- file manager
-    use 'kyazdani42/nvim-web-devicons' -- icons for nvim-tree
 
     -- misc
     use 'akinsho/toggleterm.nvim'
     use 'numToStr/Comment.nvim'
     use 'windwp/nvim-autopairs' -- automatic bracket/paranthesis/etc pairing
+
+    use 'nvim-lualine/lualine.nvim'
+    use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
+
     -- themeing
     use 'drewtempelmeyer/palenight.vim'
     use {'catppuccin/nvim', as = 'catppuccin'}
     use 'tanvirtin/monokai.nvim'
     use 'folke/tokyonight.nvim'
+    use 'Yazeed1s/oh-lucy.nvim'
+
 
     -- deps
     use 'nvim-lua/plenary.nvim'
@@ -53,6 +59,8 @@ return packer.startup(function(use)
        'williamboman/mason.nvim',
        'williamboman/mason-lspconfig.nvim'
     }
+
+
 
     use 'wbthomason/packer.nvim' -- get autoupdates for packer
 end)
