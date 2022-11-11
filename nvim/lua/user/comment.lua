@@ -3,8 +3,7 @@ require("Comment").setup({
   sticky = true,
   ignore = nil,
   toggler = {
-    line = '<leader>c',
-    block = '<leader>b',
+    line = '<space>c',
   },
   mappings = {
     basic = true,

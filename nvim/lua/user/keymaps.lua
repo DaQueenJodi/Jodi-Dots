@@ -26,10 +26,10 @@ keymap("n", "<Esc>", ":noh<CR>", opts)
 -- open file tree
 keymap("n", "<leader>e", ":NERDTreeToggle<CR>", opts)
 -- resizing windows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<S-K>", ":resize -2<CR>", opts)
+keymap("n", "<S-J>", ":resize +2<CR>", opts)
+keymap("n", "<S-H>", ":vertical resize -2<CR>", opts)
+keymap("n", "<S-L>", ":vertical resize +2<CR>", opts)
 
 -- Visual --
 -- Block Indenting

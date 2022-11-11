@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/coq_nvim",
     url = "https://github.com/ms-jpq/coq_nvim"
   },
+  ["crates.nvim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/crates.nvim",
+    url = "https://github.com/saecki/crates.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -261,6 +266,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
+  },
+  ["vim-glsl"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-glsl",
+    url = "https://github.com/tikhomirov/vim-glsl"
   },
   ["vim-nix"] = {
     loaded = true,

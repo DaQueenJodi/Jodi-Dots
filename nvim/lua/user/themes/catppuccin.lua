@@ -4,7 +4,6 @@ require("catpuccin").setup({
   styles = {
     comments = {},
     conditionals = {},
-    functions = {"bold"},
   },
   integrations = {
     treesitter = true,

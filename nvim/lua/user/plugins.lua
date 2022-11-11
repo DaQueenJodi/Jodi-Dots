@@ -13,7 +13,7 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'hrsh7th/cmp-buffer'
-    --COQ
+    -- COQ
     use {'ms-jpq/coq_nvim', branch = 'coq'}
     use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
     use {'ms-jpq/coq.thirdparty', branch = '3p'}
@@ -23,13 +23,17 @@ return packer.startup(function(use)
     -- linting
     use 'mfussenegger/nvim-lint'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'LnL7/vim-nix' -- nixos uwu
     use 'sbdchd/neoformat' -- formatting
     use 'NvChad/nvim-colorizer.lua'
     -- Lisp
     use 'kovisoft/slimv'
     use 'bhurlow/vim-parinfer'
     use {'p00f/nvim-ts-rainbow', require = 'nvim-treesitter/nvim-treesitter'}
+
+    -- Misc Langs
+    use 'tikhomirov/vim-glsl'
+    use 'LnL7/vim-nix' -- nixos uwu
+
     -- files
     use 'nvim-telescope/telescope.nvim'
 
@@ -44,6 +48,8 @@ return packer.startup(function(use)
     use 'nvim-lualine/lualine.nvim'
     use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
 
+    use {'saecki/crates.nvim', requires = 'nvim-lua/plenary.nvim'}
+
     -- themeing
     use 'drewtempelmeyer/palenight.vim'
     use {'catppuccin/nvim', as = 'catppuccin'}
@@ -51,16 +57,10 @@ return packer.startup(function(use)
     use 'folke/tokyonight.nvim'
     use 'Yazeed1s/oh-lucy.nvim'
 
-
     -- deps
     use 'nvim-lua/plenary.nvim'
-      
-    use {
-       'williamboman/mason.nvim',
-       'williamboman/mason-lspconfig.nvim'
-    }
 
-
+    use {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim'}
 
     use 'wbthomason/packer.nvim' -- get autoupdates for packer
 end)
