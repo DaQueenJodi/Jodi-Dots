@@ -10,7 +10,7 @@ vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, opts)
 -- vim.keymap.set("n", "C-l", vim.lsp.diagnostic.goto_prev, opts)
 -- vim.keymap.set("n", "C-h", vim.lsp.diagnostic.goto_next, opts)
 -- requires nvim-code-action-menu plugin
-vim.api.nvim_set_keymap("n", "gc", ":CodeActionMenu<CR>", opts);
+vim.api.nvim_set_keymap("n", "ga", ":CodeActionMenu<CR>", opts);
 -- NOTE: the lsp servers in use are declared in completion.lua
 
 vim.api.nvim_create_autocmd("CursorHold", {

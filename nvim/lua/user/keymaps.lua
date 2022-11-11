@@ -18,8 +18,6 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
--- switch tags better
-keymap("n", "<leader>t", "gt", opts) 
 -- close search
 keymap("n", "<Esc>", ":noh<CR>", opts)
 

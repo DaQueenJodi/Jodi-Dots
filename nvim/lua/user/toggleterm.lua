@@ -8,7 +8,7 @@ local toggleterm = require("toggleterm")
 
 toggleterm.setup({
    size = 20,
-   open_mapping = [[<leader>a]],
+   open_mapping = [[<leader>q]],
    hide_numbers = true,
    shade_filetypes = {},
    shading_factor = 2,
