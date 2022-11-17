@@ -33,6 +33,7 @@ return packer.startup(function(use)
     -- Misc Langs
     use 'tikhomirov/vim-glsl'
     use 'LnL7/vim-nix' -- nixos uwu
+    use 'simrat39/rust-tools.nvim'
 
     -- files
     use 'nvim-telescope/telescope.nvim'
@@ -47,6 +48,7 @@ return packer.startup(function(use)
 
     use 'nvim-lualine/lualine.nvim'
     use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
+    use 'j-hui/fidget.nvim'
 
     use {'saecki/crates.nvim', requires = 'nvim-lua/plenary.nvim'}
 
