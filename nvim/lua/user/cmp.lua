@@ -15,17 +15,12 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        ['<CR>'] = cmp.mapping.confirm({select = true})
     }),
     sources = cmp.config.sources({
-        {name = 'nvim_lsp', keyword_length = 1},
-        {name = 'luasnip', keyword_length = 2}
-    }, { {name = "path", keyword_length = 0}, {name = 'buffer', keyword_length = 3}, {name = "nvim_lua", keyword_length = 0}
+        {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = "path"},
+        {name = 'buffer'}, {name = "nvim_lua"}
     })
-})
-
-cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({{name = 'cmp_git'}}, {{name = 'buffer'}})
 })
 
 -- Use buffer source for '/' and '?'
@@ -41,9 +36,9 @@ cmp.setup.cmdline(':', {
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['clangd'].setup {capabilities = capabilities}
-require('lspconfig')['csharp_ls'].setup {capabilities = capabilities}
-require('lspconfig')['jsonls'].setup {capabilities = capabilities}
-require('lspconfig')['rust_analyzer'].setup {capabilities = capabilities}
-require('lspconfig')['sumneko_lua'].setup {capabilities = capabilities}
-require('lspconfig')['nil_ls'].setup {capabilities = capabilities}
+
+local servers = {"clangd", "rust_analyzer", "jsonls", "nil_ls"};
+
+for _, server in ipairs(servers) do
+    require("lspconfig")[server].setup {capabilities = capabilities}
+end

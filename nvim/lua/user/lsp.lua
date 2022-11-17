@@ -13,6 +13,7 @@ vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, opts)
 vim.api.nvim_set_keymap("n", "ga", ":CodeActionMenu<CR>", opts);
 -- NOTE: the lsp servers in use are declared in completion.lua
 
+-- display diagnostics on hover
 vim.api.nvim_create_autocmd("CursorHold", {
     buffer = bufnr,
     callback = function()
@@ -30,8 +31,18 @@ vim.api.nvim_create_autocmd("CursorHold", {
     end
 })
 
+-- turn off virtual text
 vim.diagnostic.config({virtual_text = false})
 
+-- make diagnostic icons look nicer
+local signs = {
+    Error = "",
+    Warning = "",
+    Hint = "",
+    Information = ""
+}
 
-vim.api.nvim_set_keymap("n", "<space>t", ":TroubleToggle<CR>", opts)
-
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end

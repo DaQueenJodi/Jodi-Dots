@@ -1,1 +1,3 @@
-nil
+((magit-commit
+  ("--all")
+  nil))
