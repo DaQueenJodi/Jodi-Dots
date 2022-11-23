@@ -1,0 +1,91 @@
+(in-package :stumpwm)
+
+(set-module-dir (pathname-as-directory "/home/jodi/.stumpwm.d/modules"))
+
+
+
+;; AUTOSTART
+(run-shell-command "xset r rate 400 50") ;; set repeat rate to make typing bareable
+(run-shell-command "picom &")
+(run-shell-command "xfce4-clipman &")
+
+
+(load-module "swm-gaps")
+
+;; change global prefix
+(set-prefix-key (kbd "S-SPC"))
+
+
+;; make focus change on click
+(setf *mouse-focus-policy* :click)
+;; make super move floating windows
+(setf *float-window-modifier* :SUPER)
+
+;; MISC
+
+;; turn off startup message
+(setq *startup-message* nil)
+
+;; gaps
+#| (setf swm-gaps:*head-gaps-size* 0
+      swm-gaps:*inner-gaps-size* 5
+      swm-gaps:*outer-gaps-size* 0)
+(when *initializing*
+  (swm-gaps:toggle-gaps)) |#
+   
+
+;; MODELINE
+(setf *window-format* "%m%n%c")
+(setf *screen-mode-line-format (list "[^B%n^b] %W^>%d"))
+(setf *time-modeline-string* "%a %b %e %k:%M")
+
+(setf *mode-line-timeout* 2) ;; how often modeline updates on it's own in seconds (also updates on some events in the wm)
+
+(enable-mode-line (current-screen) (current-head) t)
+
+;; KEYBINDINGS
+
+;; undefine old keybindings that suck
+;; xterm
+(undefine-key *root-map* (kbd "c"))
+(undefine-key *root-map* (kbd "C-c"))
+
+
+
+;; define keybindings
+
+;; used later
+(defvar *terminal* "alacritty")
+
+(define-key *root-map* (kbd "RET")
+            (concatenate 'string "exec " *terminal*))
+(define-key *root-map* (kbd "f")
+            "exec firefox")
+(define-key *root-map* (kbd "b")
+            "exec bluetoothctl connect 28:52:E0:11:81:AF")
+(define-key *root-map* (kbd "B")
+            "exec bluetoothctl disconnect")
+
+(define-key *root-map* (kbd "d")
+            "exec rofi -show drun -show-icons")
+
+
+(define-key *tile-group-root-map* (kbd "k") "move-focus up")
+(define-key *tile-group-root-map* (kbd "j") "move-focus down")
+(define-key *tile-group-root-map* (kbd "h") "move-focus left")
+(define-key *tile-group-root-map* (kbd "l") "move-focus right")
+
+
+;; swap these since they make no sense
+(define-key *tile-group-root-map* (kbd "q")
+            "only")
+(define-key *tile-group-root-map* (kbd "Q")
+            "quit-confirm")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec pamixer --decrease 5")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec pamixer --increase 5")
+            
+  
+  
+            
+
+

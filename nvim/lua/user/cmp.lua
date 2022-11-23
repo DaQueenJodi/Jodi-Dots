@@ -15,6 +15,7 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm({select = true})
     }),
     sources = cmp.config.sources({
@@ -37,8 +38,9 @@ cmp.setup.cmdline(':', {
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = {"clangd", "rust_analyzer", "jsonls", "nil_ls"};
+local servers = {"clangd", "rust_analyzer", "jsonls", "nil_ls", "csharp_ls"};
 
 for _, server in ipairs(servers) do
     require("lspconfig")[server].setup {capabilities = capabilities}
 end
+

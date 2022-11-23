@@ -1,0 +1,22 @@
+bind f exec firefox
+bind c exec alacritty
+bind return exec alacritty
+bind d exec rofi -show drun -show-icons
+
+# focus without needing to go to prefix
+definekey top M-h focusleft
+definekey top M-j focusdown
+definekey top M-k focusup
+definekey top M-l focusright
+
+
+
+startup_message off
+
+escape C-z
+
+# fix java swing gui stuff
+exec wmname LG3D
+
+
+
