@@ -1,1 +1,0 @@
-("/hdd/Documents/Programming/Rust/rs-status/" "~/.dots/")

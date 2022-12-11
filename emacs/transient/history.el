@@ -1,3 +1,0 @@
-((magit-commit
-  ("--all")
-  nil))
