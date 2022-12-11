@@ -25,15 +25,15 @@ super + v
 	xfce4-popup-clipman
 # screenshot
 super + shift + s
-	 screenshot -s
-
+	 maim -m 10 -s | xclip -selection clipboard -t image/png
 # terminal emulator
 super + {_, shift +} Return
 	WINIT_X11_SCALE_FACTOR=1 {alacritty, tdrop -w 1911 -a -m alacritty}
 
 # program launcher
 super + d
-	rofi -show drun -show-icons
+	rofi -show drun -show-icons -m -1 
+  # -m -1 makes rofi open in the currently focused window instead of following the mouse
 
 # make sxhkd reload its configuration files:
 super + r

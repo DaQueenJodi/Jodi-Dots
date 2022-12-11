@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 bar="▁▂▃▄▅▆▇█"
 dict="s/;//g;"
@@ -23,7 +23,6 @@ config_file="/tmp/polybar_cava_config"
 echo "
 [general]
 bars = 10
-
 [output]
 method = raw
 raw_target = $pipe

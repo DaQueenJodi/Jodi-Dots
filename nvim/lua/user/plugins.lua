@@ -62,7 +62,7 @@ return packer.startup(function(use)
     -- deps
     use 'nvim-lua/plenary.nvim'
 
-    use {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim'}
+    -- use {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim'}
 
     use 'wbthomason/packer.nvim' -- get autoupdates for packer
 end)
