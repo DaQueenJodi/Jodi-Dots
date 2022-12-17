@@ -27,7 +27,7 @@ return packer.startup(function(use)
     use 'NvChad/nvim-colorizer.lua'
     -- Lisp
     use 'kovisoft/slimv'
-    use 'bhurlow/vim-parinfer'
+    use 'vim-scripts/paredit.vim'
     use {'p00f/nvim-ts-rainbow', require = 'nvim-treesitter/nvim-treesitter'}
 
     -- Misc Langs

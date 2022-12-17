@@ -1,4 +1,4 @@
-; make ui cleaner
+;make ui cleaner
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -73,12 +73,12 @@
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
 	 (c-mode . lsp)))
-
-
 ;;; language specific
 ;; lisp
 ;; use sly as the lisp repl
-(use-package sly)
+(use-package sly
+	:config
+	(setf inferior-lisp-program "sbcl"))
 ; use paredit for balancing parantheses
 (use-package paredit
   :hook (emacs-lisp-mode lisp-mode sly-editing-mode))
@@ -90,11 +90,28 @@
 (use-package which-key
   :init
   (which-key-mode))
-; use beacon which helps you keep track of your cursor
-(use-package beacon
-	:config
-	(beacon-mode))
+
 (use-package vterm)
 
 ; use magit for git management
 (use-package magit)
+
+; this allows you to format basically all source files
+(use-package format-all)
+; this allows you to move text around
+(use-package move-text
+	:bind (("S-C-N" . move-text-down)
+				 ("S-C-P" . move-text-up)))
+;; turn off bell
+(setf ring-bell-function 'ignore)
+;; hilight current line at all times
+(global-hl-line-mode)
+;; use projectile for project management
+(use-package projectile
+	:init
+	(projectile-mode)
+	:bind
+	(:map projectile-mode-map
+				("C-c p" . projectile-command-map))
+	:config
+	(setf projectile-project-search-path '(("~/Documents/Programming" . 5))))
