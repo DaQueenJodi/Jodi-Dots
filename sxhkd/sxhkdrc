@@ -11,6 +11,9 @@ super + {_, shift + } a
 super + x; {f,d}
 	{firefox-bin, discord-canary}
 
+super + e
+	emacsclient -c
+
 # volume control
 XF86Audio{Lower,Raise}Volume
 	pamixer --allow-boost {-d,-i} 5

@@ -95,7 +95,7 @@ label = %output%
 [module/portage]
 type = custom/script
 tail = true
-exec = $HOME/.config/polybar/modules/portage.sh
+exec = sudo $HOME/.config/polybar/modules/portage.sh
 format = <label>
 format-font = 5
 label = %output%

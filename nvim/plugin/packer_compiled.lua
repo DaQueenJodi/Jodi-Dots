@@ -227,6 +227,11 @@ _G.packer_plugins = {
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/palenight.vim",
     url = "https://github.com/drewtempelmeyer/palenight.vim"
   },
+  ["paredit.vim"] = {
+    loaded = true,
+    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/paredit.vim",
+    url = "https://github.com/vim-scripts/paredit.vim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -276,11 +281,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-nix",
     url = "https://github.com/LnL7/vim-nix"
-  },
-  ["vim-parinfer"] = {
-    loaded = true,
-    path = "/home/jodi/.local/share/nvim/site/pack/packer/start/vim-parinfer",
-    url = "https://github.com/bhurlow/vim-parinfer"
   }
 }
 

@@ -1,19 +1,12 @@
+; -*- mode: Lisp;-*-
 (in-package :stumpwm)
 
-(set-module-dir (pathname-as-directory "/home/jodi/.stumpwm.d/modules"))
+(run-shell-command "~/.on_start")
 
+(set-module-dir (pathname-as-directory "/usr/share/common-lisp/source/stumpwm-contrib"))
 
-
-;; AUTOSTART
-(run-shell-command "xset r rate 400 50") ;; set repeat rate to make typing bareable
-(run-shell-command "picom &")
-(run-shell-command "xfce4-clipman &")
-
-
-(load-module "swm-gaps")
-
-;; change global prefix
-(set-prefix-key (kbd "S-SPC"))
+;; change global prefixqGG
+(set-prefix-key (kbd "C-z"))
 
 
 ;; make focus change on click
@@ -26,13 +19,6 @@
 ;; turn off startup message
 (setq *startup-message* nil)
 
-;; gaps
-#| (setf swm-gaps:*head-gaps-size* 0
-      swm-gaps:*inner-gaps-size* 5
-      swm-gaps:*outer-gaps-size* 0)
-(when *initializing*
-  (swm-gaps:toggle-gaps)) |#
-   
 
 ;; MODELINE
 (setf *window-format* "%m%n%c")
@@ -41,7 +27,9 @@
 
 (setf *mode-line-timeout* 2) ;; how often modeline updates on it's own in seconds (also updates on some events in the wm)
 
-(enable-mode-line (current-screen) (current-head) t)
+
+(dolist (head (screen-heads (current-screen)))
+	(enable-mode-line (current-screen) head t))
 
 ;; KEYBINDINGS
 
@@ -49,7 +37,6 @@
 ;; xterm
 (undefine-key *root-map* (kbd "c"))
 (undefine-key *root-map* (kbd "C-c"))
-
 
 
 ;; define keybindings
@@ -60,7 +47,7 @@
 (define-key *root-map* (kbd "RET")
             (concatenate 'string "exec " *terminal*))
 (define-key *root-map* (kbd "f")
-            "exec firefox")
+            "exec firefox-bin")
 (define-key *root-map* (kbd "b")
             "exec bluetoothctl connect 28:52:E0:11:81:AF")
 (define-key *root-map* (kbd "B")
@@ -69,13 +56,6 @@
 (define-key *root-map* (kbd "d")
             "exec rofi -show drun -show-icons")
 
-
-(define-key *tile-group-root-map* (kbd "k") "move-focus up")
-(define-key *tile-group-root-map* (kbd "j") "move-focus down")
-(define-key *tile-group-root-map* (kbd "h") "move-focus left")
-(define-key *tile-group-root-map* (kbd "l") "move-focus right")
-
-
 ;; swap these since they make no sense
 (define-key *tile-group-root-map* (kbd "q")
             "only")
@@ -83,9 +63,3 @@
             "quit-confirm")
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "exec pamixer --decrease 5")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec pamixer --increase 5")
-            
-  
-  
-            
-
-
