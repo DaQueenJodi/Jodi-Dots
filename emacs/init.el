@@ -33,7 +33,6 @@
   :init
   (load-theme 'monokai t))
 
-
 ;; misc
 ;; make emacs' weird custom-variable stuff in a seperate file
 (setf custom-file "~/.config/emacs/custom.el")
@@ -41,7 +40,11 @@
 ;; make backups not annoying
 (setf backup-directory-alist '(("." . "~/.emacs_backups")))
 ;; smoother scrolling (by line instead of by screen)
-(setf scroll-step 1)
+(setf mouse-wheel-progressive-speed nil)
+(setf mouse-wheel-follow-mouse 't)
+(setf scroll-conservatively 10000)
+(setf auto-window-vscroll nil)
+
 ;;;; programming
 
 ;; code completion
@@ -57,22 +60,17 @@
   :bind
   (:map corfu-map
 				("S-<return>" . corfu-insert)
-				("RET" . nil) ; dont use enter key
+				("RET" . nil)										; dont use enter key
 				("TAB" . corfu-next)
 				("S-TAB" . corfu-previous)))
 (setf )
 
-;; treesitter for better syntax hilighting
-(use-package tree-sitter
-  :ensure tree-sitter-langs)
-;; enable treesitter globally and automatically enable syntax hilighting
-(global-tree-sitter-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 (use-package yaml-mode)
 (use-package rust-mode)
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
-				 (c-mode . lsp)))
+				 (c-mode . lsp)
+				 (yaml-mode . lsp)))
 ;;; language specific
 ;; lisp
 ;; use sly as the lisp repl
@@ -91,11 +89,6 @@
   :init
   (which-key-mode))
 
-(use-package vterm)
-
-;; use magit for git management
-(use-package magit)
-
 ;; this allows you to format basically all source files
 (use-package format-all)
 ;; this allows you to move text around
@@ -105,19 +98,46 @@
 ;; turn off bell
 (setf ring-bell-function 'ignore)
 ;; use projectile for project management
-(use-package projectile
+(use-package projectile)
+;; use magit and forge for git management
+(use-package magit)
+(use-package hl-todo
 	:init
-	(projectile-mode)
-	:bind
-	(:map projectile-mode-map
-				("C-c p" . projectile-command-map))
-	:config
-	(setf projectile-project-search-path '(("~/Documents/Programming" . 5))))
-
-(use-package hl-todo)
-
+	(hl-todo-mode))
 
 (use-package doom-modeline
 	:ensure all-the-icons
 	:init
 	(doom-modeline-mode 1))
+(use-package ido
+	:init (ido-mode))
+(use-package smex
+	:init
+	(smex-initialize)
+	:bind
+	(("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c C-c M-x" . execute-extended-command)))
+
+
+(use-package tree-sitter
+	:ensure tree-sitter-langs
+	:init
+	(global-tree-sitter-mode)
+	:hook
+	(global-tree-sitter-mode . tree-sitter-hl-mode))
+
+;; display line numbers
+(display-line-numbers-mode 1)
+;; disable line numbers in some modes
+(dolist (mode '(compilation-mode-hook
+								eshell-mode-hook
+								shell-mode-hook))
+	(add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+
+;; preformance
+;; based on lsp-doctor
+(setf gc-cons-threshold 100000000) ; 100mb
+(setf read-process-output-max (* 1024 1024)) ;; 1mb
+(setf lsp-use-plists t)

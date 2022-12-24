@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+    <menu id="root-menu" label="OpenBox 3">
+        <menu id="1" label="Development">
+            <item label="CMake curses GUI (ccmake)"> <action name="Execute">
+                <execute>alacritty -e ccmake</execute>
+            </action> </item>
+            <item label="IDLE (Python IDE)"> <action name="Execute">
+                <execute>idle</execute>
+            </action> </item>
+            <item label="Python"> <action name="Execute">
+                <execute>alacritty -e python</execute>
+            </action> </item>
+            <item label="Python (v2.7)"> <action name="Execute">
+                <execute>alacritty -e python2.7</execute>
+            </action> </item>
+            <item label="Tclsh8.6"> <action name="Execute">
+                <execute>alacritty -e tclsh8.6</execute>
+            </action> </item>
+        </menu>
+        <menu id="2" label="Editors">
+            <item label="Emacs"> <action name="Execute">
+                <execute>alacritty -e emacs</execute>
+            </action> </item>
+            <item label="Neovim"> <action name="Execute">
+                <execute>alacritty -e nvim</execute>
+            </action> </item>
+        </menu>
+        <menu id="18" label="Games">
+            <menu id="11" label="Board">
+                <item label="Monopoly"> <action name="Execute">
+                    <execute>alacritty -e monop</execute>
+                </action> </item>
+            </menu>
+        </menu>
+        <menu id="6" label="Graphics">
+            <item label="MuPDF"> <action name="Execute">
+                <execute>mupdf</execute>
+            </action> </item>
+        </menu>
+        <menu id="7" label="Multimedia">
+            <item label="PulseAudio Volume Control"> <action name="Execute">
+                <execute>pavucontrol</execute>
+            </action> </item>
+        </menu>
+        <menu id="5" label="Network">
+            <item label="Mozilla Firefox (bin)"> <action name="Execute">
+                <execute>firefox-bin</execute>
+            </action> </item>
+            <item label="qBittorrent"> <action name="Execute">
+                <execute>qbittorrent</execute>
+            </action> </item>
+            <item label="W3m"> <action name="Execute">
+                <execute>alacritty -e w3m</execute>
+            </action> </item>
+        </menu>
+        <menu id="4" label="Science">
+            <item label="bc"> <action name="Execute">
+                <execute>alacritty -e bc</execute>
+            </action> </item>
+            <item label="dc"> <action name="Execute">
+                <execute>alacritty -e dc</execute>
+            </action> </item>
+        </menu>
+        <menu id="19" label="Shells">
+            <item label="Alacritty"> <action name="Execute">
+                <execute>alacritty</execute>
+            </action> </item>
+            <item label="GIT"> <action name="Execute">
+                <execute>alacritty -e git</execute>
+            </action> </item>
+            <item label="ranger"> <action name="Execute">
+                <execute>alacritty -e ranger</execute>
+            </action> </item>
+            <item label="rc"> <action name="Execute">
+                <execute>alacritty -e rc</execute>
+            </action> </item>
+        </menu>
+        <menu id="37" label="System">
+            <menu id="36" label="Settings">
+                <menu id="21" label="GNOME">
+                    <item label="Bluetooth Manager"> <action name="Execute">
+                        <execute>blueman-manager</execute>
+                    </action> </item>
+                </menu>
+                <menu id="35" label="Xfce">
+                    <item label="Bluetooth Adapters"> <action name="Execute">
+                        <execute>blueman-adapters</execute>
+                    </action> </item>
+                </menu>
+                <item label="ARandR"> <action name="Execute">
+                    <execute>arandr</execute>
+                </action> </item>
+                <item label="Customize Look and Feel"> <action name="Execute">
+                    <execute>lxappearance</execute>
+                </action> </item>
+                <item label="Manage Printing"> <action name="Execute">
+                    <execute>xdg-open http://localhost:631/</execute>
+                </action> </item>
+                <item label="Openbox Configuration Manager"> <action name="Execute">
+                    <execute>obconf</execute>
+                </action> </item>
+            </menu>
+            <item label="chronyc"> <action name="Execute">
+                <execute>alacritty -e chronyc</execute>
+            </action> </item>
+            <item label="fish"> <action name="Execute">
+                <execute>alacritty -e fish</execute>
+            </action> </item>
+            <item label="pstree"> <action name="Execute">
+                <execute>alacritty -e pstree.x11</execute>
+            </action> </item>
+            <item label="pstree"> <action name="Execute">
+                <execute>alacritty -e pstree</execute>
+            </action> </item>
+            <item label="Tint2"> <action name="Execute">
+                <execute>tint2</execute>
+            </action> </item>
+            <item label="Top"> <action name="Execute">
+                <execute>alacritty -e top</execute>
+            </action> </item>
+        </menu>
+        <menu id="38" label="Utilities">
+            <item label="Info"> <action name="Execute">
+                <execute>alacritty -e info</execute>
+            </action> </item>
+            <item label="picom"> <action name="Execute">
+                <execute>picom</execute>
+            </action> </item>
+            <item label="Xsetroot"> <action name="Execute">
+                <execute>xsetroot</execute>
+            </action> </item>
+        </menu>
+        <separator/>
+        <menu id="40" label="OpenBox">
+            <menu id="client-list-menu"/>
+            <item label="Reconfigure"> <action name="Reconfigure"/> </item>
+            <separator/>
+            <item label="Exit"> <action name="Exit"/> </item>
+        </menu>
+    </menu>
+</openbox_menu>
