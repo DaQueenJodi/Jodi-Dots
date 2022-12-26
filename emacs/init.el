@@ -1,3 +1,10 @@
+;; UTIL
+(defvar jodi/config-home (file-name-directory (or load-file-name (buffer-file-name))))
+(defun jodi/load (str)
+	(load (concat jodi/config-home str)))
+
+
+
 ;;make ui cleaner
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -28,6 +35,7 @@
   (setf auto-package-update-hide-results t)
   (setf auto-package-delete-old-version t)
   (auto-package-update-maybe))
+
 ;; theme
 (use-package monokai-theme
   :init
@@ -47,94 +55,6 @@
 
 ;;;; programming
 
-;; code completion
-(use-package corfu
-  :custom
-  (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-auto-prefix 2)
-  (corfu-auto-delay 0.0)
-  :init
-  (global-corfu-mode)
-  (corfu-history-mode)
-  :bind
-  (:map corfu-map
-				("S-<return>" . corfu-insert)
-				("RET" . nil)										; dont use enter key
-				("TAB" . corfu-next)
-				("S-TAB" . corfu-previous)))
-(setf )
-
-(use-package yaml-mode)
-(use-package rust-mode)
-(use-package lsp-mode
-  :hook ((rust-mode . lsp)
-				 (c-mode . lsp)
-				 (yaml-mode . lsp)))
-;;; language specific
-;; lisp
-;; use sly as the lisp repl
-(use-package sly
-	:config
-	(setf inferior-lisp-program "sbcl"))
-;; use paredit for balancing parantheses
-(use-package paredit
-  :hook (emacs-lisp-mode lisp-mode sly-editing-mode))
-;; add rainbow delimeiters to help keep track of parantheses
-(use-package rainbow-delimiters
-  :hook prog-mode)
-;; misc
-;; set up which-key
-(use-package which-key
-  :init
-  (which-key-mode))
-
-;; this allows you to format basically all source files
-(use-package format-all)
-;; this allows you to move text around
-(use-package move-text
-	:bind (("S-C-N" . move-text-down)
-				 ("S-C-P" . move-text-up)))
-;; turn off bell
-(setf ring-bell-function 'ignore)
-;; use projectile for project management
-(use-package projectile)
-;; use magit and forge for git management
-(use-package magit)
-(use-package hl-todo
-	:init
-	(hl-todo-mode))
-
-(use-package doom-modeline
-	:ensure all-the-icons
-	:init
-	(doom-modeline-mode 1))
-(use-package ido
-	:init (ido-mode))
-(use-package smex
-	:init
-	(smex-initialize)
-	:bind
-	(("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command)))
-
-
-(use-package tree-sitter
-	:ensure tree-sitter-langs
-	:init
-	(global-tree-sitter-mode)
-	:hook
-	(tree-sitter-after-on-hook . tree-sitter-hl-mode))
-
-;; display line numbers
-(global-display-line-numbers-mode)
-;; disable line numbers in some modes
-(dolist (mode '(compilation-mode-hook
-								eshell-mode-hook
-								shell-mode-hook))
-	(add-hook mode (lambda () (display-line-numbers-mode 0))))
-
 
 ;; preformance
 ;; based on lsp-doctor
@@ -142,13 +62,9 @@
 (setf read-process-output-max (* 1024 1024)) ;; 1mb
 (setf lsp-use-plists t)
 
-
 (use-package glsl-mode)
 
-
 ;; keybindings
-
-
 (defun jodi/copy-line ()
 	"Copy the current line"
 	(interactive)
@@ -165,3 +81,9 @@
 
 
 (global-set-key (kbd "C-x f") 'format-all-buffer)
+(define-key dired-mode-map (kbd "C") 'dired-do-copy)
+(define-key dired-mode-map (kbd "c") 'dired-create-empty-file)
+
+(jodi/load "programming.el")
+
+;; modeline
