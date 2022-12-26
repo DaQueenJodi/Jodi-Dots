@@ -125,10 +125,10 @@
 	:init
 	(global-tree-sitter-mode)
 	:hook
-	(global-tree-sitter-mode . tree-sitter-hl-mode))
+	(tree-sitter-after-on-hook . tree-sitter-hl-mode))
 
 ;; display line numbers
-(display-line-numbers-mode 1)
+(global-display-line-numbers-mode)
 ;; disable line numbers in some modes
 (dolist (mode '(compilation-mode-hook
 								eshell-mode-hook
@@ -141,3 +141,27 @@
 (setf gc-cons-threshold 100000000) ; 100mb
 (setf read-process-output-max (* 1024 1024)) ;; 1mb
 (setf lsp-use-plists t)
+
+
+(use-package glsl-mode)
+
+
+;; keybindings
+
+
+(defun jodi/copy-line ()
+	"Copy the current line"
+	(interactive)
+	(kill-ring-save (+ (line-beginning-position) (current-indentation))
+									(line-end-position))
+	(kill-append "\n" t)) ;; append newline to front
+
+(global-set-key (kbd "C-,") 'jodi/copy-line)
+
+(global-set-key (kbd "C-x c") 'compile)
+
+(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "M-a") 'move-beginning-of-line)
+
+
+(global-set-key (kbd "C-x f") 'format-all-buffer)
