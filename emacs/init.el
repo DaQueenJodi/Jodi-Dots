@@ -3,8 +3,6 @@
 (defun jodi/load (str)
 	(load (concat jodi/config-home str)))
 
-
-
 ;;make ui cleaner
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -35,6 +33,8 @@
   (setf auto-package-update-hide-results t)
   (setf auto-package-delete-old-version t)
   (auto-package-update-maybe))
+
+(use-package dimish) ;; hide mode on the modeline
 
 ;; theme
 (use-package monokai-theme
@@ -81,8 +81,10 @@
 
 
 (global-set-key (kbd "C-x f") 'format-all-buffer)
-(define-key dired-mode-map (kbd "C") 'dired-do-copy)
-(define-key dired-mode-map (kbd "c") 'dired-create-empty-file)
+
+(eval-after-load "dired" '(progn
+														(define-key dired-mode-map (kbd "C") 'dired-do-copy)
+														(define-key dired-mode-map (kbd "c") 'dired-create-empty-file)))
 
 (jodi/load "programming.el")
 

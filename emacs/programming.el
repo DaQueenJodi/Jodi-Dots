@@ -1,9 +1,10 @@
 
 (use-package yaml-mode)
 (use-package rust-mode)
+
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
-				 (c-mode . lsp)
+;;				 (c-mode . lsp)
 				 (yaml-mode . lsp)))
 ;;; language specific
 ;; lisp
@@ -16,15 +17,17 @@
   :hook (emacs-lisp-mode lisp-mode sly-editing-mode))
 ;; add rainbow delimeiters to help keep track of parantheses
 (use-package rainbow-delimiters
+	:diminish
   :hook prog-mode)
 ;; misc
 ;; set up which-key
 (use-package which-key
+	:diminish
   :init
   (which-key-mode))
 
 ;; this allows you to format basically all source files
-(use-package format-all)
+;;(use-package format-all)
 ;; this allows you to move text around
 (use-package move-text
 	:bind (("S-C-N" . move-text-down)
@@ -32,7 +35,8 @@
 ;; turn off bell
 (setf ring-bell-function 'ignore)
 ;; use projectile for project management
-(use-package projectile)
+(use-package projectile
+	:diminish)
 ;; use magit and forge for git management
 (use-package magit)
 (use-package hl-todo
@@ -40,8 +44,10 @@
 	(hl-todo-mode))
 
 (use-package ido
+	:diminish
 	:init (ido-mode))
 (use-package smex
+	:diminish
 	:init
 	(smex-initialize)
 	:bind
@@ -51,6 +57,7 @@
 
 
 (use-package tree-sitter
+	:diminish
 	:ensure tree-sitter-langs
 	:init
 	(global-tree-sitter-mode)
@@ -65,3 +72,4 @@
 								vterm-mode-hook
 								shell-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode 0))))
+
