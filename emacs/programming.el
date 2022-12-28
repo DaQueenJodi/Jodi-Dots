@@ -14,6 +14,7 @@
 	(setf inferior-lisp-program "sbcl"))
 ;; use paredit for balancing parantheses
 (use-package paredit
+	:diminish
   :hook (emacs-lisp-mode lisp-mode sly-editing-mode))
 ;; add rainbow delimeiters to help keep track of parantheses
 (use-package rainbow-delimiters
@@ -73,3 +74,12 @@
 								shell-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+(use-package company
+	:config
+	(global-company-mode 1)
+	(setf company-idle-delay nil)
+	(setf company-frontends
+				'(company-preview-frontend))
+	(setf company-tooltip-limit 4)
+	:bind
+	("C-<tab>" . company-complete))

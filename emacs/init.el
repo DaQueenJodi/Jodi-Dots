@@ -34,7 +34,7 @@
   (setf auto-package-delete-old-version t)
   (auto-package-update-maybe))
 
-(use-package dimish) ;; hide mode on the modeline
+(use-package diminish) ;; hide mode on the modeline
 
 ;; theme
 (use-package monokai-theme
@@ -82,10 +82,19 @@
 
 (global-set-key (kbd "C-x f") 'format-all-buffer)
 
-(eval-after-load "dired" '(progn
-														(define-key dired-mode-map (kbd "C") 'dired-do-copy)
-														(define-key dired-mode-map (kbd "c") 'dired-create-empty-file)))
+(eval-after-load "dired"
+	'(progn
+		 (define-key dired-mode-map (kbd "C") 'dired-do-copy)
+		 (define-key dired-mode-map (kbd "c") 'dired-create-empty-file)))
+
+(global-set-key (kbd "C-<tab>") 'company-complete)
+
 
 (jodi/load "programming.el")
 
 ;; modeline
+(setq-default mode-line-format
+							(list
+							 "%b "
+							 "%P "
+							 mode-line-modes))
