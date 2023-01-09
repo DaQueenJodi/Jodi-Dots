@@ -1,0 +1,4 @@
+#!/bin/sh
+
+NAME=$(dmenu_dpath | dmenu "$@")
+gtk-launch "${NAME}"

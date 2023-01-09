@@ -4,7 +4,7 @@
 
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
-;;				 (c-mode . lsp)
+				 (c-mode . lsp)
 				 (yaml-mode . lsp)))
 ;;; language specific
 ;; lisp
@@ -77,9 +77,15 @@
 (use-package company
 	:config
 	(global-company-mode 1)
-	(setf company-idle-delay nil)
+	(setf company-idle-delay 0.1)
 	(setf company-frontends
-				'(company-preview-frontend))
+				'(company-echo-strip-common-frontend))
 	(setf company-tooltip-limit 4)
 	:bind
-	("C-<tab>" . company-complete))
+	(:map company-active-map
+				 ("<return>" . nil)
+				 ("RET" . nil)
+				 ("C-<return>" . company-complete-selection)
+				 ("C-RET" . company-complete-selection)))
+
+

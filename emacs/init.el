@@ -65,32 +65,33 @@
 (use-package glsl-mode)
 
 ;; keybindings
-(defun jodi/copy-line ()
-	"Copy the current line"
+(defun jodi/duplicate-line ()
+	"Duplicate the current line"
 	(interactive)
-	(kill-ring-save (+ (line-beginning-position) (current-indentation))
-									(line-end-position))
-	(kill-append "\n" t)) ;; append newline to front
+	(let ((line (string-trim-right(thing-at-point 'line t))))
+		(move-end-of-line 1)
+		(insert "\n" line)))
 
-(global-set-key (kbd "C-,") 'jodi/copy-line)
 
+(global-set-key (kbd "C-,") 'jodi/duplicate-line)
 (global-set-key (kbd "C-x c") 'compile)
-
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "M-a") 'move-beginning-of-line)
 
-
 (global-set-key (kbd "C-x f") 'format-all-buffer)
-
 (eval-after-load "dired"
 	'(progn
 		 (define-key dired-mode-map (kbd "C") 'dired-do-copy)
 		 (define-key dired-mode-map (kbd "c") 'dired-create-empty-file)))
 
 (global-set-key (kbd "C-<tab>") 'company-complete)
-
+(global-set-key (kbd "S-<tab>") 'company-complete)
 
 (jodi/load "programming.el")
+
+
+(setf cursor-type 'bar)
+(setf blink-cursor-delay 1)
 
 ;; modeline
 (setq-default mode-line-format

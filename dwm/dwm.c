@@ -93,7 +93,6 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
-	int issteam;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -201,7 +200,6 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void fullscreen(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
@@ -293,9 +291,6 @@ applyrules(Client *c)
 	XGetClassHint(dpy, c->win, &ch);
 	class    = ch.res_class ? ch.res_class : broken;
 	instance = ch.res_name  ? ch.res_name  : broken;
-
-	if (strstr(class, "Steam") || strstr(class, "steam_app_"))
-		c->issteam = 1;
 
 	for (i = 0; i < LENGTH(rules); i++) {
 		r = &rules[i];
@@ -597,15 +592,13 @@ configurerequest(XEvent *e)
 			c->bw = ev->border_width;
 		else if (c->isfloating || !selmon->lt[selmon->sellt]->arrange) {
 			m = c->mon;
-			if (!c->issteam) {
-				if (ev->value_mask & CWX) {
-					c->oldx = c->x;
-					c->x = m->mx + ev->x;
-				}
-				if (ev->value_mask & CWY) {
-					c->oldy = c->y;
-					c->y = m->my + ev->y;
-				}
+			if (ev->value_mask & CWX) {
+				c->oldx = c->x;
+				c->x = m->mx + ev->x;
+			}
+			if (ev->value_mask & CWY) {
+				c->oldy = c->y;
+				c->y = m->my + ev->y;
 			}
 			if (ev->value_mask & CWWidth) {
 				c->oldw = c->w;
@@ -1013,9 +1006,10 @@ keypress(XEvent *e)
 void
 killclient(const Arg *arg)
 {
-	if (!selmon->sel)
+	if (!selmon->sel) {
 		return;
-	if (!sendevent(selmon->sel, wmatom[WMDelete])) {
+	}
+ 	if (!sendevent(selmon->sel, wmatom[WMDelete])) {
 		XGrabServer(dpy);
 		XSetErrorHandler(xerrordummy);
 		XSetCloseDownMode(dpy, DestroyAll);
@@ -1025,7 +1019,6 @@ killclient(const Arg *arg)
 		XUngrabServer(dpy);
 	}
 }
-
 void
 manage(Window w, XWindowAttributes *wa)
 {
@@ -1503,19 +1496,6 @@ setfullscreen(Client *c, int fullscreen)
 		resizeclient(c, c->x, c->y, c->w, c->h);
 		arrange(c->mon);
 	}
-}
-
-Layout *last_layout;
-void
-fullscreen(const Arg *arg)
-{
-	if (selmon->showbar) {
-		for(last_layout = (Layout *)layouts; last_layout != selmon->lt[selmon->sellt]; last_layout++);
-		setlayout(&((Arg) { .v = &layouts[2] }));
-	} else {
-		setlayout(&((Arg) { .v = last_layout }));
-	}
-	togglebar(arg);
 }
 
 void

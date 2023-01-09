@@ -1,0 +1,7 @@
+#!/bin/sh
+
+IFS=":"
+for dir in $XDG_DATA_DIRS
+do
+  ls $dir/applications 2>/dev/null | sed -n 's/.desktop//p' | sort -u
+done
