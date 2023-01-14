@@ -11,3 +11,7 @@ plugin/packer_compiled.lua
 *.obj
 *.elf
 
+# emacs
+\#*\#
+.\#*
+.cache/

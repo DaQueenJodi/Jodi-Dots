@@ -4,7 +4,7 @@
 
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
-				 (c-mode . lsp)
+				 ;;				 (c-mode . lsp)
 				 (yaml-mode . lsp)))
 ;;; language specific
 ;; lisp
@@ -83,9 +83,7 @@
 	(setf company-tooltip-limit 4)
 	:bind
 	(:map company-active-map
-				 ("<return>" . nil)
-				 ("RET" . nil)
-				 ("C-<return>" . company-complete-selection)
-				 ("C-RET" . company-complete-selection)))
-
-
+				("<return>" . nil)
+				("RET" . nil)
+				("C-<return>" . company-complete-selection)
+				("C-RET" . company-complete-selection)))

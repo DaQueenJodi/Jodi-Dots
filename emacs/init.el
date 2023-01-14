@@ -90,7 +90,7 @@
 (jodi/load "programming.el")
 
 
-(setf cursor-type 'bar)
+(setq-default cursor-type 'bar)
 (setf blink-cursor-delay 1)
 
 ;; modeline

@@ -59,7 +59,8 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenudcmd[] = { "dmenu_drun", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenurcmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char screenshotcmd[] = "maim --select --quality 10 | xclip -selection cliboard -target image/png";
 static const char *emacscmd[] = {"emacsclient", "-c", NULL};
 static const char *termcmd[]  = { "alacritty", NULL };
@@ -72,7 +73,8 @@ static const char *Mutecmd[] = {"pamixer", "--toggle-mute", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = dmenudcmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenurcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD(screenshotcmd) },
 	{ MODKEY,                       XK_e,      spawn,          {.v = emacscmd} },
