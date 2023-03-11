@@ -1,4 +1,0 @@
-{
-   "rust-analyzer.inlayHints.enable": true,
-   "rust-analyzer.inlayHints.typeHints.enable": true
-}

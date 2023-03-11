@@ -2,7 +2,7 @@
 luac.out
 
 # nvim packer thing
-plugin/packer_compiled.lua
+nvim/plugin
 
 # object files
 *.o

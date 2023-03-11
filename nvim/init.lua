@@ -1,8 +1,1 @@
-require "user.options"
-require "user.plugins"
-require "user.lsp"
-require "user.cmp"
---require "user.coq"
-require "user.keymaps"
-require "user.theme"
-require "user.pluginsconf"
+require('jodi')
