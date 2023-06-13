@@ -1,6 +1,9 @@
-vim.g.mapleader = "<Space>"
+vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Explore)
 vim.keymap.set("n", "<C-x>", vim.cmd.terminal)
+vim.keymap.set("n", "<leader>x", function()
+	vim.cmd("!%:p")
+end)
 vim.keymap.set("n", "t", function()
 	local name = vim.fn.input("Tab Name >")
 	vim.cmd.tabnew(name)
@@ -20,5 +23,5 @@ for _,side in ipairs(sides) do
 	end
 end
 
-
+keymap("i", "<ESC>", "<nop>", default_opts)
 keymap("t", "<Esc>", [[<C-\><C-n>]], default_opts)

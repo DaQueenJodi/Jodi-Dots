@@ -1,6 +1,6 @@
 vim.opt.guicursor = ""
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 local tab_len = 2
 vim.opt.tabstop = tab_len
